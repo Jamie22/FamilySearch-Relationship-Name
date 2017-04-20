@@ -1,4 +1,5 @@
 // ==UserScript==
+// @author Jamie22
 // @name FamilySearch Relationship Name
 // @version 0.1
 // @description Describes the relationship between you and another person on your family tree when you click "View My Relationship",
