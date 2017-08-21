@@ -1,7 +1,7 @@
 // ==UserScript==
 // @author Jamie22
 // @name FamilySearch Relationship Name
-// @version 0.1
+// @version 0.2
 // @description Script for FamilySearch.org that describes the relationship between you and another person on your family tree when you click "View My Relationship", ie. Grandmother, 3 Times Great Grandfather, 4th Cousin Twice Removed, etc.
 // @match https://www.familysearch.org/tree/*
 // @copyright 2017 James Shorrock
