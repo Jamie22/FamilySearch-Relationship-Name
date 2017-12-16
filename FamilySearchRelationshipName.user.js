@@ -8,7 +8,7 @@
 // @require http://code.jquery.com/jquery-latest.js
 // @require  https://gist.github.com/raw/2625891/waitForKeyElements.js
 // @grant GM_addStyle
-// @license GPL3; https://www.gnu.org/licenses/gpl-3.0.en.html
+// @license GPL-3.0; https://www.gnu.org/licenses/gpl-3.0.en.html
 // ==/UserScript==
 
 // This will be used to display the relationship name on the page
