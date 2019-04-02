@@ -1,10 +1,10 @@
 // ==UserScript==
 // @author Jamie22
 // @name FamilySearch Relationship Name
-// @version 0.3
+// @version 0.4
 // @description Script for FamilySearch.org that describes the relationship between you and another person on your family tree when you click "View My Relationship", ie. Grandmother, 3 Times Great Grandfather, 4th Cousin Twice Removed, etc.
 // @match https://www.familysearch.org/tree/*
-// @copyright 2017 James Shorrock
+// @copyright 2019 James Shorrock
 // @require http://code.jquery.com/jquery-latest.js
 // @require  https://gist.github.com/raw/2625891/waitForKeyElements.js
 // @grant GM_addStyle
@@ -14,18 +14,20 @@
 // This will be used to display the relationship name on the page
 var rlNameSpan = null;
 
-waitForKeyElements("#show", addShowListener);
+waitForKeyElements("fs-person-page", addShowListener);
 
 function addShowListener()
 {
-    document.getElementById("show").addEventListener("click", getFamilyJSON);
+    var btnRelationship = document.getElementsByTagName("fs-person-page")[0].shadowRoot.querySelector(".relationship-calc-opener");
+    btnRelationship.addEventListener("click", getFamilyJSON);
 }
 
 function getFamilyJSON()
 {
+    var loggedInPersonId = $("simple-router").attr("logged-in-person-id");
     var ancestorId = window.location.pathname.split('/')[4];
 
-    $.getJSON('https://www.familysearch.org/tree-data/my-relatives/tree-graph-relation/' + window.eval('loggedInPersonId') + '/' + ancestorId, nameRelationship);
+    $.getJSON('https://www.familysearch.org/tree-data/my-relatives/tree-graph-relation/' + loggedInPersonId + '/' + ancestorId, nameRelationship);
 }
 
 function grand(rel, numgen)
@@ -186,12 +188,7 @@ function nameRelationship(relChart)
     // Display the relationship name at the bottom of the relationship chart popup
     if(rlNameSpan === null)
     {
-        // Works in Firefox
-        var infoIcon = document.getElementById("info-icon");
-
-        if(infoIcon === null)
-            // Works in Chrome
-            infoIcon = document.getElementsByTagName("birch-relationship-calc")[0].shadowRoot.querySelector("#info-icon");
+        var infoIcon = document.getElementsByTagName("fs-person-page")[0].shadowRoot.querySelector("#relationshipCalc").shadowRoot.querySelector("#info-icon");
 
         rlNameSpan = document.createElement('span');
         rlNameSpan.style.fontSize = "18px";
