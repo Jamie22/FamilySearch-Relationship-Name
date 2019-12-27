@@ -1,7 +1,7 @@
 // ==UserScript==
 // @author Jamie22
 // @name FamilySearch Relationship Name
-// @version 0.4
+// @version 0.5
 // @description Script for FamilySearch.org that describes the relationship between you and another person on your family tree when you click "View My Relationship", ie. Grandmother, 3 Times Great Grandfather, 4th Cousin Twice Removed, etc.
 // @match https://www.familysearch.org/tree/*
 // @copyright 2019 James Shorrock
@@ -27,7 +27,7 @@ function getFamilyJSON()
     var loggedInPersonId = $("simple-router").attr("logged-in-person-id");
     var ancestorId = window.location.pathname.split('/')[4];
 
-    $.getJSON('https://www.familysearch.org/tree-data/my-relatives/tree-graph-relation/' + loggedInPersonId + '/' + ancestorId, nameRelationship);
+    $.getJSON('https://www.familysearch.org/service/tree/tree-data/my-relatives/tree-graph-relation/' + loggedInPersonId + '/' + ancestorId, nameRelationship);
 }
 
 function grand(rel, numgen)
